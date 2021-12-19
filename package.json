@@ -1,0 +1,40 @@
+{
+  "name": "blog-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node main.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eng-gabrielscardoso/blog-nodejs.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "EJS",
+    "MySQL",
+    "Bootstrap",
+    "Blog"
+  ],
+  "author": "Gabriel Santos Cardoso",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
+    "pm2": "^5.1.2",
+    "sequelize": "^6.12.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "git-commit-msg-linter": "^3.2.8",
+    "jest": "^27.4.5",
+    "nodemon": "^2.0.15"
+  }
+}
