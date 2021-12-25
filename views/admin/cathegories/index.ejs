@@ -1,0 +1,37 @@
+<%- include('../../components/head.ejs'); %>
+  <header class="fixed-top">
+    <%- include('../../components/header.ejs') %> 
+  </header>
+  <main class="cathegories h-100 d-flex justify-content-center align-items-center">
+    <div class="cathegories-listing container h-75 col-md-8">
+      <h1>Categorias</h1>
+      <a name="btnRegiterNewCathegory" id="btnRegiterNewCathegory" class="btn btn-success" href="/admin/categorias/novo" role="button">Criar nova categoria</a>
+      <table class="table table-stripped mt-2">
+        <thead class="thead-inverse">
+          <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Slug</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cathegories.forEach(cathegory => { %>
+          <tr>
+            <td scope="row"><%= cathegory.id %></td>
+            <td><%= cathegory.title %></td>
+            <td><%= cathegory.slug %></td>
+            <td>
+              <button type="button" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <footer class="fixed-bottom d-flex justify-content-end p-2">
+    <%- include('../../components/footer.ejs') %> 
+  </footer>
+<%- include('../../components/tail.ejs'); %>

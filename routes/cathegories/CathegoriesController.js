@@ -5,6 +5,14 @@ const router = express.Router();
 
 const Cathegory  = require('./Cathegory');
 
+router.get('/admin/categorias', (req, res, next) => {
+  Cathegory.findAll().then(cathegories => {
+    res.render('admin/cathegories/index', {
+      cathegories: cathegories
+    });
+  });
+});
+
 router.get('/admin/categorias/novo', (req, res, next) => {
   res.render('admin/cathegories/new');
 });
