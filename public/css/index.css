@@ -9,3 +9,9 @@ body{
   height: 100%;
   overflow-x: hidden;
 }
+
+main{
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  position: relative;
+}

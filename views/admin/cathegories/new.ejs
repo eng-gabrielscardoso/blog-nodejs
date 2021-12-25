@@ -1,1 +1,28 @@
-<h1>Bem vindo a rota New Cathegory</h1>
+<%- include('../../components/head.ejs'); %>
+  <header class="fixed-top">
+    <%- include('../../components/header.ejs'); %> 
+  </header>
+  <main class="cathegory-register h-100 d-flex justify-content-center align-items-center">
+    <div class="container col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h1>Cadastro de Categoria</h1>
+        </div>
+        <div class="card-body">
+          <form action="/categorias/salvar" method="post">
+            <div class="form-group">
+              <label for="cathegoryNameRegister">Insira o nome da categoria: </label>
+              <input type="text"
+                class="form-control" name="cathegoryNameRegister" id="cathegoryNameRegister" aria-describedby="helpId" placeholder="Nome da categoria">
+              <small id="helpId" class="form-text text-muted">Utilize um nome indexável</small>
+            </div>
+            <button type="submit" class="btn btn-success">Cadastrar categoria</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="fixed-bottom d-flex justify-content-end p-2">
+    <%- include('../../components/footer.ejs'); %> 
+  </footer>
+<%- include('../../components/tail.ejs'); %>
