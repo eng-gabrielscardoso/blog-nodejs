@@ -3,13 +3,13 @@
     <%- include('../components/header-admin.ejs') %> 
   </header>
   <main class="cathegories h-100 d-flex justify-content-center align-items-center">
-    <div class="cathegories-listing container h-75 col-md-8">
+    <div class="cathegories-listing container h-75 col-md-8  col-sm-12">
       <h1>Categorias</h1>
       <a name="btnRegiterNewCathegory" id="btnRegiterNewCathegory" class="btn btn-success" href="/admin/categorias/novo" role="button">Criar nova categoria</a>
-      <table class="table table-stripped mt-2">
+      <table class="table table-bordered mt-2">
         <thead class="thead-inverse">
           <tr>
-            <th>ID</th>
+            <th class="d-none d-md-block">ID</th>
             <th>Titulo</th>
             <th>Slug</th>
             <th>Ações</th>
@@ -18,12 +18,17 @@
         <tbody>
           <% cathegories.forEach(cathegory => { %>
           <tr>
-            <td scope="row"><%= cathegory.id %></td>
+            <td scope="row" class="d-none d-md-block"><%= cathegory.id %></td>
             <td><%= cathegory.title %></td>
             <td><%= cathegory.slug %></td>
-            <td>
+            <td class="d-flex justify-content-around align-items-start">
               <button type="button" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-              <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              <form class="form-inline" action="/admin/categorias/deletar" method="post">
+                <div class="form-group">
+                  <input type="hidden" name="cathegoryId" value="<%= cathegory.id %>">
+                  <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                </div>
+              </form>
             </td>
           </tr>
           <% }); %>
