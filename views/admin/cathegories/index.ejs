@@ -22,7 +22,7 @@
             <td><%= cathegory.title %></td>
             <td><%= cathegory.slug %></td>
             <td class="d-flex justify-content-around align-items-start">
-              <button type="button" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <a name="btnCathegoryUpdate" id="btnCathegoryUpdate" class="btn btn-warning" href="/admin/categorias/editar/<%= cathegory.id %>" role="button"><i class="fa fa-pencil text-light" aria-hidden="true"></i></a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmationDeleteCathegory">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
               </button>
@@ -37,7 +37,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      Deseja realmente deletar a categoria <strong><%= cathegory.title %></strong>
+                      Deseja realmente deletar a categoria <strong><%= cathegory.title %></strong>?
                       <br>
                       <small class="text-muted">Tal ação não pode ser revertida</small>
                     </div>

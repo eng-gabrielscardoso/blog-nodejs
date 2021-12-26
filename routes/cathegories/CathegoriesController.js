@@ -17,7 +17,30 @@ router.get('/admin/categorias/novo', (req, res, next) => {
   res.render('admin/cathegories/new');
 });
 
-router.post('/categorias/salvar', (req, res, next) => {
+router.get('/admin/categorias/editar/:cathegoryId', (req, res, next) => {
+  let cathegoryId = req.params.cathegoryId;
+
+  if(isNaN(cathegoryId)) {
+    res.redirect('/admin/categorias');
+  } else {
+    CathegoryModel.findByPk(cathegoryId).then(cathegory => {
+      try {
+        res.render('admin/cathegories/edit', {
+          cathegory: cathegory
+        });
+      } catch (e) {
+        console.log(`An error occurred during load edition view of a cathegory. Log: ${e}`);
+        res.redirect('/admin/categorias');
+      };
+    })
+      .catch(e => {
+        console.log(`An error occurred during load edition view of a cathegory. Log: ${e}`);
+        res.redirect('/admin/categorias');
+      });
+  }
+});
+
+router.post('/admin/categorias/salvar', (req, res, next) => {
   let newCathegory = req.body.cathegoryNameRegister;
 
   if (!newCathegory || newCathegory == undefined) {
@@ -56,6 +79,24 @@ router.post('/admin/categorias/deletar', (req, res, next) => {
   } else {
     res.redirect('/admin/categorias');
   };
+});
+
+router.post('/admin/categorias/atualizar', (req, res, next) => {
+  let cathegoryId = req.body.cathegoryId;
+  let cathegoryUpdatedName = req.body.chategoryUpdatedName;
+
+  CathegoryModel.update({ 
+    title: cathegoryUpdatedName,
+    slug: slugify(cathegoryUpdatedName)
+   },{
+    where: {
+      id: cathegoryId
+    }
+  }).then(_ => res.redirect('/admin/categorias'))
+    .catch(e => {
+      console.log(`An error occurred during update a cathegory. Log: ${e}`);
+      res.redirect('/admin/categorias');
+    });
 });
 
 module.exports = router;

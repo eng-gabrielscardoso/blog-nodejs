@@ -1,0 +1,29 @@
+<%- include('../../components/head.ejs'); %>
+<header class="fixed-top">
+  <%- include('../components/header-admin.ejs'); %> 
+</header>
+<main class="cathegory-register h-100 d-flex justify-content-center align-items-center">
+  <div class="container col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h1>Edição de Categoria</h1>
+      </div>
+      <div class="card-body">
+        <form action="/admin/categorias/atualizar" method="post">
+          <div class="form-group">
+            <label for="cathegoryUpdatedName">Atualizar o nome da categoria: </label>
+            <input type="hidden" name="cathegoryId" value="<%= cathegory.id %>">
+            <input type="text"
+            class="form-control" name="cathegoryUpdatedName" id="cathegoryUpdatedName" aria-describedby="helpId" placeholder="Novo nome">
+            <small id="helpId" class="form-text text-muted">Nome atual: <strong><%= cathegory.title %></strong></small>
+          </div>
+          <button type="submit" class="btn btn-success">Atualizar categoria</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="fixed-bottom">
+  <%- include('../../components/footer.ejs'); %> 
+</footer>
+<%- include('../../components/tail.ejs'); %>
