@@ -9,14 +9,14 @@ const port = process.env.PORT || 3001;
 const connection = require('./private/database/connection');
 
 const ArticleModel = require('./routes/articles/Article');
-const CathegoryModel = require('./routes/cathegories/Cathegory');
+const CategoryModel = require('./routes/categories/Category');
 
 connection.authenticate()
   .then(_ => console.log(`Database connection established sucessfully`))
   .catch(e => console.log(`Database connection not established. Log: ${e}`))
 
 const articlesController = require('./routes/articles/ArticlesController');
-const categoriesController = require('./routes/cathegories/CathegoriesController');
+const categoriesController = require('./routes/categories/CategoriesController');
 
 app.set('view engine', 'ejs');
 

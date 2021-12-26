@@ -2,10 +2,10 @@
   <header class="fixed-top">
     <%- include('../components/header-admin.ejs') %> 
   </header>
-  <main class="cathegories h-100 d-flex justify-content-center align-items-center">
-    <div class="cathegories-listing container h-75 col-md-8  col-sm-12">
+  <main class="categories h-100 d-flex justify-content-center align-items-center">
+    <div class="categories-listing container h-75 col-md-8  col-sm-12">
       <h1>Categorias</h1>
-      <a name="btnRegiterNewCathegory" id="btnRegiterNewCathegory" class="btn btn-success" href="/admin/categorias/novo" role="button">Criar nova categoria</a>
+      <a name="btnRegiterNewCategory" id="btnRegiterNewCategory" class="btn btn-success" href="/admin/categorias/novo" role="button">Criar nova categoria</a>
       <table class="table table-bordered mt-2">
         <thead class="thead-inverse">
           <tr>
@@ -16,29 +16,29 @@
           </tr>
         </thead>
         <tbody>
-          <% cathegories.forEach(cathegory => { %>
+          <% categories.forEach(category => { %>
           <tr>
-            <td scope="row" class="d-none d-md-block"><%= cathegory.id %></td>
-            <td><%= cathegory.title %></td>
-            <td><%= cathegory.slug %></td>
+            <td scope="row" class="d-none d-md-block"><%= category.id %></td>
+            <td><%= category.title %></td>
+            <td><%= category.slug %></td>
             <td class="d-flex justify-content-around align-items-start">
-              <a name="btnCathegoryUpdate" id="btnCathegoryUpdate" class="btn btn-warning" href="/admin/categorias/editar/<%= cathegory.id %>" role="button"><i class="fa fa-pencil text-light" aria-hidden="true"></i></a>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmationDeleteCathegory<%= cathegory.id %>">
+              <a name="btnCategoryUpdate" id="btnCategoryUpdate" class="btn btn-warning" href="/admin/categorias/editar/<%= category.id %>" role="button"><i class="fa fa-pencil text-light" aria-hidden="true"></i></a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmationDeleteCategory<%= category.id %>">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
               </button>
-              <input type="hidden" name="cathegoryId" value="<%= cathegory.id %>">
+              <input type="hidden" name="categoryId" value="<%= category.id %>">
               <!-- Modal -->
-              <div class="modal fade" id="confirmationDeleteCathegory<%= cathegory.id %>" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteCathegory" aria-hidden="true">
+              <div class="modal fade" id="confirmationDeleteCategory<%= category.id %>" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteCategory" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="confirmationDeleteCathegory">Confirmação</h5>
+                      <h5 class="modal-title" id="confirmationDeleteCategory">Confirmação</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      Deseja realmente deletar a categoria <strong><%= cathegory.title %></strong>?
+                      Deseja realmente deletar a categoria <strong><%= category.title %></strong>?
                       <br>
                       <small class="text-muted">Tal ação não pode ser revertida</small>
                     </div>
@@ -46,7 +46,7 @@
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                       <form class="form-inline" action="/admin/categorias/deletar" method="post">
                         <div class="form-group">
-                          <input type="hidden" name="cathegoryId" value="<%= cathegory.id %>">
+                          <input type="hidden" name="categoryId" value="<%= category.id %>">
                           <button type="submit" class="btn btn-danger">Deletar</button>
                         </div>
                       </form>

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const connection = require('../../private/database/connection');
 const Sequelize = require('sequelize');
-const Cathegory = require('../cathegories/Cathegory');
+const Category = require('../categories/Category');
 
 const Article = connection.define('articles', {
   title: {
@@ -18,8 +18,8 @@ const Article = connection.define('articles', {
   }
 });
 
-Cathegory.hasMany(Article);
-Article.belongsTo(Cathegory);
+Category.hasMany(Article);
+Article.belongsTo(Category);
 Article.sync({ force: false });
 
 module.exports = Article;

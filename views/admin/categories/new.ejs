@@ -2,7 +2,7 @@
   <header class="fixed-top">
     <%- include('../components/header-admin.ejs'); %> 
   </header>
-  <main class="cathegory-register h-100 d-flex justify-content-center align-items-center">
+  <main class="category-register h-100 d-flex justify-content-center align-items-center">
     <div class="container col-md-6">
       <div class="card">
         <div class="card-header">
@@ -11,9 +11,9 @@
         <div class="card-body">
           <form action="/admin/categorias/salvar" method="post">
             <div class="form-group">
-              <label for="cathegoryNameRegister">Insira o nome da categoria: </label>
+              <label for="categoryNameRegister">Insira o nome da categoria: </label>
               <input type="text"
-                class="form-control" name="cathegoryNameRegister" id="cathegoryNameRegister" aria-describedby="helpId" placeholder="Nome da categoria">
+                class="form-control" name="categoryNameRegister" id="categoryNameRegister" aria-describedby="helpId" placeholder="Nome da categoria">
               <small id="helpId" class="form-text text-muted">Utilize um nome indexável</small>
             </div>
             <button type="submit" class="btn btn-success">Cadastrar categoria</button>

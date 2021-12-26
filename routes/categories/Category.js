@@ -2,7 +2,7 @@ require('dotenv').config();
 const connection = require('../../private/database/connection');
 const Sequelize = require('sequelize');
 
-const Cathegory = connection.define('cathegories', {
+const Category = connection.define('categories', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
@@ -13,6 +13,6 @@ const Cathegory = connection.define('cathegories', {
   }
 })
 
-Cathegory.sync({ force: false });
+Category.sync({ force: false });
 
-module.exports = Cathegory;
+module.exports = Category;
