@@ -23,11 +23,12 @@
             <td><%= cathegory.slug %></td>
             <td class="d-flex justify-content-around align-items-start">
               <a name="btnCathegoryUpdate" id="btnCathegoryUpdate" class="btn btn-warning" href="/admin/categorias/editar/<%= cathegory.id %>" role="button"><i class="fa fa-pencil text-light" aria-hidden="true"></i></a>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmationDeleteCathegory">
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmationDeleteCathegory<%= cathegory.id %>">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
               </button>
+              <input type="hidden" name="cathegoryId" value="<%= cathegory.id %>">
               <!-- Modal -->
-              <div class="modal fade" id="confirmationDeleteCathegory" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteCathegory" aria-hidden="true">
+              <div class="modal fade" id="confirmationDeleteCathegory<%= cathegory.id %>" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteCathegory" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
