@@ -23,12 +23,36 @@
             <td><%= cathegory.slug %></td>
             <td class="d-flex justify-content-around align-items-start">
               <button type="button" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-              <form class="form-inline" action="/admin/categorias/deletar" method="post">
-                <div class="form-group">
-                  <input type="hidden" name="cathegoryId" value="<%= cathegory.id %>">
-                  <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmationDeleteCathegory">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="confirmationDeleteCathegory" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteCathegory" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="confirmationDeleteCathegory">Confirmação</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Deseja realmente deletar a categoria <strong><%= cathegory.title %></strong>
+                      <br>
+                      <small class="text-muted">Tal ação não pode ser revertida</small>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                      <form class="form-inline" action="/admin/categorias/deletar" method="post">
+                        <div class="form-group">
+                          <input type="hidden" name="cathegoryId" value="<%= cathegory.id %>">
+                          <button type="submit" class="btn btn-danger">Deletar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-              </form>
+              </div>
             </td>
           </tr>
           <% }); %>
