@@ -83,7 +83,9 @@ router.post('/admin/categorias/deletar', (req, res, next) => {
 
 router.post('/admin/categorias/atualizar', (req, res, next) => {
   let cathegoryId = req.body.cathegoryId;
-  let cathegoryUpdatedName = req.body.chategoryUpdatedName;
+  let cathegoryUpdatedName = req.body.cathegoryUpdatedName;
+
+  console.log(cathegoryUpdatedName)
 
   CathegoryModel.update({ 
     title: cathegoryUpdatedName,
