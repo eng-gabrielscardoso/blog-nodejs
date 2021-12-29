@@ -2,8 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 
-router.get('/artigos', (req, res, next) => {
-  res.send('Rota de artigos');
+const CategoryModel = require('../categories/Category');
+
+router.get('/admin/artigos/novo', (req, res, next) => {
+  CategoryModel.findAll()
+    .then(categories => {
+      res.render('admin/articles/new', { categories: categories, });
+    });
 });
 
 module.exports = router;
