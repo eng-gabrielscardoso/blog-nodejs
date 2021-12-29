@@ -1,4 +1,4 @@
-<%- include('../../components/head.ejs'); %>
+<%- include('../components/head-article.ejs'); %>
   <header class="fixed-top">
     <%- include('../components/header-admin.ejs'); %> 
   </header>
@@ -6,7 +6,7 @@
     <div class="overflow container h-75 col-md-8 col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h1>Criar novo artigo</h1>
+          <h1>Criar artigo</h1>
         </div>
         <div class="card-body">
           <form action="" method="post">
@@ -18,6 +18,14 @@
             <div class="form-group">
               <label for="articleBodyRegister">Insira o conteúdo</label>
               <textarea name="articleBodyRegister" id="articleBodyRegister" class="form-control" placeholder="Escreva a sua ideia"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="articleCategoryRegister">Selecione uma categoria</label>
+              <select class="form-control" name="articleCategoryRegister" id="articleCategoryRegister">
+                <% categories.forEach(category => { %>
+                  <option value="<% category.id %>"><%= category.title %></option>
+                <% }); %>
+              </select>
             </div>
             <button type="submit" class="btn btn-success">Criar artigo</button>
           </form>
