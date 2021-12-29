@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 
-router.get('/artigos', (req, res, next) => {
-  res.send('Rota de artigos');
+router.get('/admin/artigos/novo', (req, res, next) => {
+  res.render('admin/articles/new')
 });
 
 module.exports = router;

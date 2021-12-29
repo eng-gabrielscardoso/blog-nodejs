@@ -16,6 +16,6 @@ main{
   position: relative;
 }
 
-.categories-listing{
+.overflow{
   overflow-y: scroll;
 }
