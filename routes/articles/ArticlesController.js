@@ -7,7 +7,11 @@ const ArticleModel = require('../articles/Article');
 const CategoryModel = require('../categories/Category');
 
 router.get('/admin/artigos', (req, res, next) => {
-  res.send('Rota de artigos');
+  ArticleModel.findAll().then(articles => {
+    res.render('admin/articles/index',{
+      articles: articles,
+    });
+  });
 });
 
 router.get('/admin/artigos/novo', (req, res, next) => {
