@@ -24,7 +24,7 @@ router.get('/admin/artigos/novo', (req, res, next) => {
 router.post('/admin/artigos/salvar', (req, res, next) => {
   let articleTitle = req.body.articleTitleRegister;
   let articleBody = req.body.articleBodyRegister;
-  let articleCategory = req.body.articleCategoryRegister.value;
+  let articleCategory = req.body.articleCategoryRegister;
 
   ArticleModel.create({
     title: articleTitle,
