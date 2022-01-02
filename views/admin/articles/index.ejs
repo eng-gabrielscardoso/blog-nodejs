@@ -22,7 +22,7 @@
             <td scope="row" class="d-none d-md-block"><%= article.id %></td>
             <td><%= article.title %></td>
             <td><%= article.slug %></td>
-            <td><%= article.categoryId %></td>
+            <td><%= article.category.title %></td>
             <td class="d-flex justify-content-around align-items-start">
               <a name="btnArticleUpdate" id="btnArticleUpdate" class="btn btn-warning" href="/admin/artigos/editar/<%= article.id %>" role="button"><i class="fa fa-pencil text-light" aria-hidden="true"></i></a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmationDeleteArticle<%= article.id %>">
@@ -48,7 +48,7 @@
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                       <form class="form-inline" action="/admin/artigos/deletar" method="post">
                         <div class="form-group">
-                          <input type="hidden" name="categoryId" value="<%= article.id %>">
+                          <input type="hidden" name="articleId" value="<%= article.id %>">
                           <button type="submit" class="btn btn-danger">Deletar</button>
                         </div>
                       </form>

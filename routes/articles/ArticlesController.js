@@ -7,7 +7,9 @@ const ArticleModel = require('../articles/Article');
 const CategoryModel = require('../categories/Category');
 
 router.get('/admin/artigos', (req, res, next) => {
-  ArticleModel.findAll().then(articles => {
+  ArticleModel.findAll({
+    include: [{ model: CategoryModel, }],
+  }).then(articles => {
     res.render('admin/articles/index',{
       articles: articles,
     });
@@ -21,6 +23,32 @@ router.get('/admin/artigos/novo', (req, res, next) => {
     });
 });
 
+router.get('/admin/artigos/editar/:articleId', (req, res, next) => {
+  let articleId = req.params.articleId;
+
+  if(isNaN(articleId)) {
+    res.redirect('/admin/artigos');
+  } else {
+    ArticleModel.findAll({
+      include: [{ model: CategoryModel, }],
+    }).then((article, categories) => {
+      try {
+        res.render('admin/articles/edit', {
+          article: article,
+          categories: article.category,
+        });
+      } catch (e) {
+        console.log(`An error occurred during load edition view of a article. Log: ${e}`);
+        res.redirect('/admin/artigos');
+      };
+    })
+      .catch(e => {
+        console.log(`An error occurred during load edition view of a article. Log: ${e}`);
+        res.redirect('/admin/artigos');
+      });
+  }
+});
+
 router.post('/admin/artigos/salvar', (req, res, next) => {
   let articleTitle = req.body.articleTitleRegister;
   let articleBody = req.body.articleBodyRegister;
@@ -32,6 +60,30 @@ router.post('/admin/artigos/salvar', (req, res, next) => {
     body: articleBody,
     categoryId: articleCategory,
   }).then(_ => res.redirect('/admin/artigos'))
+});
+
+router.post('/admin/artigos/deletar', (req, res, next) => {
+  let articleId = req.body.articleId;
+
+  if (articleId != undefined) {
+    if (!isNaN(articleId)) {
+      ArticleModel.destroy({
+        where: {
+          id: articleId
+        }
+      }).then(_ => {
+        res.redirect('/admin/artigos');
+      })
+        .catch(e => {
+          console.log(`An error occurred during delete a article. Log: ${e}`);
+          res.redirect('/admin/artigos');
+        });
+    } else {
+      res.redirect('/admin/artigos');
+    };
+  } else {
+    res.redirect('/admin/artigos');
+  };
 });
 
 module.exports = router;
