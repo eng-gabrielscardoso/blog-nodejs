@@ -36,4 +36,28 @@ router.post('/admin/artigos/salvar', (req, res, next) => {
   }).then(_ => res.redirect('/admin/artigos'))
 });
 
+router.post('/admin/artigos/deletar', (req, res, next) => {
+  let articleId = req.body.articleId;
+
+  if (articleId != undefined) {
+    if (!isNaN(articleId)) {
+      ArticleModel.destroy({
+        where: {
+          id: articleId
+        }
+      }).then(_ => {
+        res.redirect('/admin/artigos');
+      })
+        .catch(e => {
+          console.log(`An error occurred during delete a article. Log: ${e}`);
+          res.redirect('/admin/artigos');
+        });
+    } else {
+      res.redirect('/admin/artigos');
+    };
+  } else {
+    res.redirect('/admin/artigos');
+  };
+});
+
 module.exports = router;
