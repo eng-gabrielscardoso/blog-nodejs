@@ -28,10 +28,17 @@ app.use('/', articlesController);
 app.use('/', categoriesController);
 
 app.get('/', (req, res, next) => {
-  res.render('index');
+  ArticleModel.findAll({
+    include: [{ model: CategoryModel, }],
+  })
+    .then(articles => {
+      res.render('index', {
+        articles: articles,
+      });
+    });
 });
 
-app.listen(port, () => {
+app.listen(port, _ => {
   try{
     console.log(`Server running: https://localhost:${port}`);
   } catch(e) {

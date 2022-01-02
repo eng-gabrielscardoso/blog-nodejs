@@ -23,32 +23,6 @@ router.get('/admin/artigos/novo', (req, res, next) => {
     });
 });
 
-router.get('/admin/artigos/editar/:articleId', (req, res, next) => {
-  let articleId = req.params.articleId;
-
-  if(isNaN(articleId)) {
-    res.redirect('/admin/artigos');
-  } else {
-    ArticleModel.findAll({
-      include: [{ model: CategoryModel, }],
-    }).then((article, categories) => {
-      try {
-        res.render('admin/articles/edit', {
-          article: article,
-          categories: article.category,
-        });
-      } catch (e) {
-        console.log(`An error occurred during load edition view of a article. Log: ${e}`);
-        res.redirect('/admin/artigos');
-      };
-    })
-      .catch(e => {
-        console.log(`An error occurred during load edition view of a article. Log: ${e}`);
-        res.redirect('/admin/artigos');
-      });
-  }
-});
-
 router.post('/admin/artigos/salvar', (req, res, next) => {
   let articleTitle = req.body.articleTitleRegister;
   let articleBody = req.body.articleBodyRegister;
