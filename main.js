@@ -38,10 +38,29 @@ app.get('/', (req, res, next) => {
     });
 });
 
-app.listen(port, _ => {
-  try{
+app.get('/artigos/:slug', (req, res, next) => {
+  let slug = req.params.slug;
+
+  ArticleModel.findOne({
+    where: {
+      slug: slug
+    }
+  }).then(article => {
+    if (article != undefined) {
+      res.render('article', { article: article });
+    } else {
+      res.redirect('/');
+    }
+  })
+    .catch(e => {
+      res.redirect('/');
+    });
+});
+
+app.listen(port, () => {
+  try {
     console.log(`Server running: https://localhost:${port}`);
-  } catch(e) {
+  } catch (e) {
     console.log(`An error occurred. Log: ${e}`);
   };
 });
